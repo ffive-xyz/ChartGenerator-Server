@@ -22,7 +22,7 @@ jobs:
           echo "::set-output name=number::${number}"
       - name: Get Version
         run: |
-          echo "${{steps.generate\version.number}}"
+          echo "${{steps.version.outputs.number}}"
           
 #       - name: Build the Docker image
 #         run: |
