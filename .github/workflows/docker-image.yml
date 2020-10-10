@@ -20,7 +20,7 @@ jobs:
         docker build . --file Dockerfile --tag ffivexyz/chartgenerator-server:$version
         
     - name: Publish to Docker Hub
-      if: github.ref == 'refs/heads/master'
+      if: github.ref == 'refs/heads/main'
       run: |
         docker login echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
         docker push ffivexyz/chartgenerator-server:$version
