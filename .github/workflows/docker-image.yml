@@ -13,7 +13,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: echo ${{ secrets.TEST }}
+      - run: echo $sec
+        env: 
+          sec: ${{ secrets.TEST }}
         
 #     - uses: actions/checkout@v2
 #     - name: Build the Docker image
