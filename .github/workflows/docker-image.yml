@@ -34,5 +34,5 @@ jobs:
           
       - name: Create Release Binary
 #         if: github.ref == 'refs/heads/main'
-        run: ./publishAll.
+        run: ./publishAll.sh
           
