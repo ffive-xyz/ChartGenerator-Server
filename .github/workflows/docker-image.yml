@@ -12,11 +12,7 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    steps:
-      - run: echo $sec
-        env: 
-          sec: ${{ secrets.TEST }}
-        
+    steps:        
       - uses: actions/checkout@v2
       - name: Build the Docker image
         run: |
@@ -30,7 +26,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      - name: Publish to Docker Hub
+      - name: Publish to DockerHub
         if: github.ref == 'refs/heads/main'
         run: |
           version=$(python3 getCoreVersion.py)
