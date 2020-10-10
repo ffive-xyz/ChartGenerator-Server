@@ -14,6 +14,16 @@ jobs:
 
     steps:        
       - uses: actions/checkout@v2
+      
+      - name: Set Version
+        id: version
+        run: |
+          number=$(python3 getCoreVersion.py)
+          echo "::set-output name=number::${number}"
+      - name: Get Version
+        run: |
+          echo "${{steps.generate\_qmkpid.version.number}}"
+          
 #       - name: Build the Docker image
 #         run: |
 #           version=$(python3 getCoreVersion.py)
@@ -33,6 +43,16 @@ jobs:
 #           docker push ffivexyz/chartgenerator-server:$version
           
       - name: Create Release Binary
-#         if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main'
         run: ./publishAll.sh
-          
+        
+      - name: Create a Release
+        if: github.ref == 'refs/heads/main'
+        uses: actions/create-release@v1.1.4
+        with:
+          # The name of the tag. This should come from the webhook payload, `github.GITHUB_REF` when a user pushes a new tag
+          tag_name: 
+          # The name of the release. For example, `Release v1.0.1`
+          release_name: 
+          draft: false
+          prerelease: false
