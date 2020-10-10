@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ChartGenerator-Chart.js" Version="0.0.63" />
+    <PackageReference Include="ChartGenerator-Chart.js" Version="0.0.64" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
   </ItemGroup>
 </Project>
