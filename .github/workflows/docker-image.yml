@@ -22,7 +22,7 @@ jobs:
           echo "::set-output name=number::${number}"
       - name: Get Version
         run: |
-          echo "${{steps.generate\_qmkpid.version.number}}"
+          echo "${{steps.generate\version.number}}"
           
 #       - name: Build the Docker image
 #         run: |
