@@ -3,7 +3,6 @@
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
 WORKDIR /app
 EXPOSE 80
-EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
@@ -51,5 +50,6 @@ WORKDIR /home/pptruser
 ENV PUPPETEER_EXECUTABLE_PATH "/usr/bin/google-chrome"
 COPY --from=publish /app/publish .
 # ENTRYPOINT ["./ChartGenerator-Server"]
-ENV ASPNETCORE_URLS=http://+:5000 
+ENV ASPNETCORE_URLS=http://+:80 
+ENV ASPNETCORE_URLS=http://+:5000
 ENTRYPOINT ["dotnet", "ChartGenerator-Server.dll"]
