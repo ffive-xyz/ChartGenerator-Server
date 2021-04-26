@@ -2,7 +2,6 @@
 
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
 WORKDIR /app
-EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
@@ -31,7 +30,7 @@ RUN apt-get update && apt-get -f install && apt-get -y install wget gnupg2 apt-u
 RUN wget --no-verbose -O /tmp/chrome.deb https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_${CHROME_VERSION}_amd64.deb \
     && apt-get install -y /tmp/chrome.deb --no-install-recommends --allow-downgrades fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst fonts-freefont-ttf \
     && rm /tmp/chrome.deb
-    # && apt-get update \
+# && apt-get update \
 
 # Add user, so we don't need --no-sandbox.
 # same layer as npm install to keep re-chowned files from using up several hundred MBs more space    
@@ -50,5 +49,6 @@ WORKDIR /home/pptruser
 ENV PUPPETEER_EXECUTABLE_PATH "/usr/bin/google-chrome"
 COPY --from=publish /app/publish .
 # ENTRYPOINT ["./ChartGenerator-Server"]
-ENV ASPNETCORE_URLS=http://+:80 
+EXPOSE 5000
+ENV ASPNETCORE_URLS=http://+:5000
 ENTRYPOINT ["dotnet", "ChartGenerator-Server.dll"]
