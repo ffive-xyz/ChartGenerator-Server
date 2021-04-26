@@ -50,7 +50,7 @@ namespace ChartGenerator_Server
             StringValues keyValue;
             var keyCheck = httpContext.Request.Headers.TryGetValue("key", out keyValue) && keyValue.ToArray()[0] == customAuthentication.Key;
 
-            if (!originCheck || !keyCheck)
+            if (httpContext.Request.Method.ToLower() == "post" && (!originCheck || !keyCheck))
             {
                 httpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;
                 await httpContext.Response.WriteAsync("Invalid key or not in origins list");
