@@ -51,4 +51,5 @@ ENV PUPPETEER_EXECUTABLE_PATH "/usr/bin/google-chrome"
 COPY --from=publish /app/publish .
 # ENTRYPOINT ["./ChartGenerator-Server"]
 ENV ASPNETCORE_URLS=http://+:80 
+ENV ASPNETCORE_URLS=http://+:5000
 ENTRYPOINT ["dotnet", "ChartGenerator-Server.dll"]
